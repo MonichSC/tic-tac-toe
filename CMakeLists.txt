@@ -4,6 +4,7 @@ message(STATUS "Constructing project")
 project (tic-tac-toe)
 
 include(src/CMakeLists.txt)
+include(cmake/Options.cmake)
 
 
 
