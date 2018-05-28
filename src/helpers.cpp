@@ -15,7 +15,7 @@ cstring TODELETE prepareCString(uint64 lenght)
 //! @version 1.0.0
 cstring TODELETE copyCString(ccstring other)
 {
-#ifdef SM_EXTENDED_CHECKS
+#ifdef EXTENDED_CHECKS
     ASSERT(other, "copyCString: no other string");
 #endif
 
