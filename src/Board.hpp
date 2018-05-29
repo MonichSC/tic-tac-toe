@@ -5,13 +5,14 @@
 
 //! @brief Represents board of the game.
 //! @author Monich
-//! @version 1.0.0
+//! @version 1.0.1
 class Board
 {
 public:
     //! @brief Default constructor of the Board.
     Board();
     //! @brief Copy constructor of the Board.
+    //! @param b - Board to copy.
     explicit Board(const Board& b);
 
     //! @brief Returns the status of the given field.
@@ -21,6 +22,7 @@ public:
     //!     3   4   5 \n
     //!     6   7   8 \n
     //! @returns Owner of the field.
+    //! @param index - index of the field to check.
     uint8 GetField(uint8 index) const;
 
     //! @brief Returns a winner of a match.
@@ -38,6 +40,8 @@ public:
     //!     6   7   8 \n
     //! @pre index is valid and not owned by any player.
     //! @post Field is owned by player.
+    //! @param index - index of the field to check.
+    //! @param player - player that makes a tick.
     void CheckField(uint8 index, uint8 player);
 
     //! @brief Finishes the match and cleans the board.
@@ -55,6 +59,40 @@ private:
     //! @brief Holds information about the winner of the match
     //! @details Don't calculate the winner every time GetWinner() is invoked - store it for optimisation.
     uint8 winner;
+    //! @brief Number of the fields already checked.
+    uint8 fieldsChecked;
+
+    //! @brief Calculates the winner of the game.
+    //! @details Should be called after every check of the field.
+    //! @pre Field specified was just checked by the player.
+    //! @post Winner is saved if there is any.
+    //! @param index - index of the field that was checked.
+    void _CheckWinner(uint8 index);
+
+    //! @brief Checks for the winner in horizontal line.
+    //! @details Checks horizontal line for the field specified.
+    //! @pre Field specified was just checked by the player.
+    //! @post Winner is saved if there is any.
+    //! @param index - index of the field that was checked.
+    void _CheckHorizontal(uint8 index);
+    //! @brief Checks for the winner in vertical line.
+    //! @details Checks vertical line for the field specified.
+    //! @pre Field specified was just checked by the player.
+    //! @post Winner is saved if there is any.
+    //! @param index - index of the field that was checked.
+    void _CheckVertical(uint8 index);
+    //! @brief Checks for the winner in diagonal line.
+    //! @details Checks diagonal line for the field specified.
+    //! @pre Field specified was just checked by the player.
+    //! @post Winner is saved if there is any.
+    //! @param index - index of the field that was checked.
+    void _CheckDiagonal(uint8 index);
+
+    //! @brief Calculates if _Check* result contains a winner.
+    //! @details _Check* functions calculate the multiplier of given line. This function resolves if this multiplier has a winner contained.
+    //! @post Winner is saved if there is any.
+    //! @param check - the multiplier.
+    void _GetWinnerByCheckResult(uint8 check);
 };
 
 #endif // !TTT_BOARD_HPP
