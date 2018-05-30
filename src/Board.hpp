@@ -5,7 +5,7 @@
 
 //! @brief Represents board of the game.
 //! @author Monich
-//! @version 1.0.1
+//! @version 1.1.0
 class Board
 {
 public:
@@ -24,6 +24,15 @@ public:
     //! @returns Owner of the field.
     //! @param index - index of the field to check.
     uint8 GetField(uint8 index) const;
+    //! @brief Returns the character representing given field on the console.
+    //! @details Field empty is represented by 0. Number 1 or 2 specifies the player that checked this file
+    //!     Fields are sorted in this manner:\n
+    //!     0   1   2 \n
+    //!     3   4   5 \n
+    //!     6   7   8 \n
+    //! @returns Character representing the field.
+    //! @param index - index of the field to check.
+    char GetFieldChar(uint8 index) const;
 
     //! @brief Returns a winner of a match.
     //! @returns id of the player that won the game. 0 if there is no winner.

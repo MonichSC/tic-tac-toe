@@ -26,6 +26,24 @@ uint8 Board::GetField(uint8 index) const
     return fields[index];
 }
 
+// @version 1.0.0
+char Board::GetFieldChar(uint8 index) const
+{
+#ifdef EXTENDED_CHECKS
+    ASSERT(index < BOARD_SIZE, "Board::GetField - invalid index");
+#endif
+
+    switch (fields[index])
+    {
+        case 0:
+            return ' ';
+        case 1:
+            return 'X';
+        case 2:
+            return 'O';
+    }
+}
+
 //! @version 1.0.0
 uint8 Board::GetWinner() const
 {
