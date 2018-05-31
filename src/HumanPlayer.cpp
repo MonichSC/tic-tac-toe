@@ -1,5 +1,5 @@
-#include "Board.hpp
-#include "HumanPlayer.hpp""
+#include "Board.hpp"
+#include "HumanPlayer.hpp"
 
 #include <cstdio>
 
@@ -27,6 +27,6 @@ uint8 HumanPlayer::Update(const Board &b)
         printf("Index of the field to check: ");
         res = scanf("%d\n", &action);
     }while(res == 1 && action < 9 && action >= 0 && !b.GetField(action));
-    
+
     return static_cast<uint8>(action);
 }
