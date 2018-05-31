@@ -16,9 +16,17 @@ uint8 HumanPlayer::Update(const Board &b)
     for (int i = 0; i < 3; ++i)
     {
         for (int j = 0; j < 3; ++j)
-            printf("%c\n", b.GetFieldChar(i*3+j));
+            printf("%c\t", b.GetFieldChar(i*3+j));
         printf("\n");
     }
+    int action;
+    int res;
 
-    return 0;
+    do
+    {
+        printf("Index of the field to check: ");
+        res = scanf("%d\n", &action);
+    }while(res == 1 && action < 9 && action >= 0 && !b.GetField(action));
+    
+    return static_cast<uint8>(action);
 }
