@@ -2,6 +2,7 @@
 #include "HumanPlayer.hpp"
 
 #include <cstdio>
+#include <iostream>
 
 //! @version 1.0.0
 HumanPlayer::HumanPlayer(uint8 id) : Player(id)
@@ -22,13 +23,12 @@ uint8 HumanPlayer::Update(const Board &b)
         printf("\n-------------------\n");
     }
     int action;
-    int res;
 
     do
     {
         printf("Index of the field to check: ");
-        res = scanf("%d\n", &action);
-    }while(res == 1 && action < 9 && action >= 0 && !b.GetField(action));
+        std::cin>>action;
+    }while(action > 9 || action <= 0 || b.GetField(action));
 
     return static_cast<uint8>(action);
 }
