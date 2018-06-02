@@ -27,7 +27,6 @@ cstring TODELETE copyCString(ccstring other)
 //! @version 1.0.0
 uint64 GenerateRandom()
 {
-    int rands[8];
     uint64 res = 0;
 
     res = 0;
