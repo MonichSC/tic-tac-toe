@@ -28,7 +28,7 @@ uint8 HumanPlayer::Update(const Board &b)
     {
         printf("Index of the field to check: ");
         std::cin>>action;
-    }while(action > 9 || action <= 0 || b.GetField(action));
+    }while(action >= 9 || action < 0 || b.GetField(action));
 
     return static_cast<uint8>(action);
 }
