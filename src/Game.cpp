@@ -1,8 +1,9 @@
+#include "Board.hpp"
+#include "Game.hpp"
+#include "Player.hpp"
+
 #include <cstdio>
 #include <iostream>
-#include "Game.hpp"
-#include "Board.hpp"
-#include "Player.hpp"
 
 void Game::Launch(Player *p1, Player *p2)
 {
