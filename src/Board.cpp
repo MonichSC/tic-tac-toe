@@ -61,7 +61,7 @@ void Board::CheckField(uint8 index, uint8 player)
 {
 #ifdef EXTENDED_CHECKS
     ASSERT(index < BOARD_SIZE, "Board::CheckField - invalid index");
-    ASSERT(fields[index], "Board::CheckField - field already checked");
+    ASSERT(!fields[index], "Board::CheckField - field already checked");
 #endif
 
     fields[index] = player;

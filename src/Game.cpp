@@ -33,7 +33,7 @@ void Game::_LaunchMatch(Player *p1, Player *p2)
 
         temp = active;
         active = next;
-        next = active;
+        next = temp;
     }
 
     printf("Winner: %c\n", b.GetWinner());
