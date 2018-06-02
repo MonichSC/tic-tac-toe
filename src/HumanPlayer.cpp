@@ -13,11 +13,13 @@ uint8 HumanPlayer::Update(const Board &b)
     printf("Current player: %c\n", GetChar());
     printf("Board status: \n");
 
+    printf("-------------------\n");
     for (int i = 0; i < 3; ++i)
     {
+        printf("|  ");
         for (int j = 0; j < 3; ++j)
-            printf("%c\t", b.GetFieldChar(i*3+j));
-        printf("\n");
+            printf("%c  |  ", b.GetFieldChar(i*3+j));
+        printf("\n-------------------\n");
     }
     int action;
     int res;
