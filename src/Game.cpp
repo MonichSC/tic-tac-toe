@@ -29,12 +29,26 @@ void Game::_LaunchMatch(Player *p1, Player *p2)
     while(!b.IsFinished())
     {
         uint8 move = active->Update(b);
-        b.CheckField(move, active->GetChar());
+        b.CheckField(move, active->id);
 
         temp = active;
         active = next;
         next = temp;
     }
 
-    printf("Winner: %c\n", b.GetWinner());
+    char winner;
+
+    switch(b.GetWinner())
+    {
+        case 0:
+            printf("Draw!\n");
+            return;
+        case 1:
+            winner = p1->GetChar();
+            break;
+        case 2:
+            winner = p2->GetChar();
+    }
+
+    printf("Winner: %c\n", winner);
 }
