@@ -1,5 +1,7 @@
 #include "Board.hpp"
 
+#include <cstdio>
+
 #define BOARD_SIZE 9
 
 //! @version 1.0.0
@@ -104,6 +106,19 @@ void Board::Clear()
         fields[i] = 0;
     winner = 0;
     fieldsChecked = 0;
+}
+
+//! @version 1.0.0
+void Board::Print() const
+{
+    printf("-------------------\n");
+    for (uint8 i = 0; i < 3; ++i)
+    {
+        printf("|  ");
+        for (uint8 j = 0; j < 3; ++j)
+            printf("%c  |  ", GetFieldChar(i*3+j));
+        printf("\n-------------------\n");
+    }
 }
 
 //! @version 1.0.0

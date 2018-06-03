@@ -9,7 +9,7 @@ typedef std::vector<uint8> ActionList;
 
 //! @brief Represents board of the game.
 //! @author Monich
-//! @version 1.2.0
+//! @version 1.3.0
 class Board
 {
 public:
@@ -70,6 +70,9 @@ public:
     //! @brief Finishes the match and cleans the board.
     //! @post Board is cleaned.
     void Clear();
+
+    //! @brief Prints the current status of the board using printf.
+    void Print() const;
 private:
     //! @brief Returns the status of the given field.
     //! @details Field empty is represented by 0. Number 1 or 2 specifies the player that checked this file

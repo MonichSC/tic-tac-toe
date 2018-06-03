@@ -41,7 +41,8 @@ void Game::_LaunchMatch(Player *p1, Player *p2)
     switch(b.GetWinner())
     {
         case 0:
-            printf("Draw!\n");
+            printf("Draw!\nBoard status:\n");
+            b.Print();
             return;
         case 1:
             winner = p1->GetChar();
@@ -50,5 +51,6 @@ void Game::_LaunchMatch(Player *p1, Player *p2)
             winner = p2->GetChar();
     }
 
-    printf("Winner: %c\n", winner);
+    printf("Winner: %c\nBoard status:\n", winner);
+    b.Print();
 }
