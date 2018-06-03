@@ -1,9 +1,11 @@
 #include "Board.hpp"
 #include "ComputerPlayer.hpp"
 
+//! @version 1.0.0
 ComputerPlayer::ComputerPlayer(uint8 id) : Player(id)
 {}
 
+//! @version 1.0.0
 uint8 ComputerPlayer::Update(const Board &b)
 {
 #ifdef EXTENDED_CHECKS
@@ -43,6 +45,7 @@ uint8 ComputerPlayer::Update(const Board &b)
     return bestAction;
 }
 
+//! @version 1.0.0
 int8 ComputerPlayer::_Calculate(Board &b, uint8 player)
 {
     if(b.IsFinished())
@@ -71,6 +74,7 @@ int8 ComputerPlayer::_Calculate(Board &b, uint8 player)
     return bestScore;
 }
 
+//! @version 1.0.0
 uint8 ComputerPlayer::_ReverseId(uint8 id)
 {
     return (uint8)(id == 1 ? 2 : 1);
