@@ -29,7 +29,7 @@ public:
     virtual uint8 Update(const Board& b) = 0;
 
     //! @brief Identifier of the player.
-    const int8 id;
+    const uint8 id;
 
     //! @brief Gets the character representing this Player.
     char GetChar() const

@@ -8,12 +8,13 @@ Board::Board()
     Clear();
 }
 
-//! @version 1.0.0
+//! @version 1.0.1
 Board::Board(const Board &b)
 {
     for (uint8 i = 0; i < BOARD_SIZE; ++i)
         fields[i] = b.fields[i];
     winner = b.winner;
+    fieldsChecked = b.fieldsChecked;
 }
 
 //! @version 1.0.0
@@ -45,6 +46,20 @@ char Board::GetFieldChar(uint8 index) const
 }
 
 //! @version 1.0.0
+void Board::GetOpenFields(ActionList &openFields) const
+{
+#ifdef EXTENDED_CHECKS
+    ASSERT(openFields.empty(), "Board::GetOpenFields - not empty");
+    ASSERT(BOARD_SIZE >= fieldsChecked, "Board::GetOpenFields - fieldChecked too big");
+#endif
+
+    openFields.reserve(static_cast<uint64>(BOARD_SIZE - fieldsChecked));
+    for (uint8 i = 0; i < BOARD_SIZE; ++i)
+        if(!fields[i])
+            openFields.push_back(i);
+}
+
+//! @version 1.0.0
 uint8 Board::GetWinner() const
 {
     return winner;
@@ -67,6 +82,19 @@ void Board::CheckField(uint8 index, uint8 player)
     fields[index] = player;
     fieldsChecked++;
     _CheckWinner(index);
+}
+
+//! @version 1.0.0
+void Board::UncheckField(uint8 index)
+{
+#ifdef EXTENDED_CHECKS
+    ASSERT(index < BOARD_SIZE, "Board::UncheckField - invalid index");
+    ASSERT(fields[index], "Board::UncheckField - field not checked");
+#endif
+
+    fields[index] = 0;
+    fieldsChecked--;
+    winner = 0;
 }
 
 //! @version 1.0.0

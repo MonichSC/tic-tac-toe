@@ -3,9 +3,13 @@
 
 #include "helpers.hpp"
 
+#include <vector>
+
+typedef std::vector<uint8> ActionList;
+
 //! @brief Represents board of the game.
 //! @author Monich
-//! @version 1.1.0
+//! @version 1.2.0
 class Board
 {
 public:
@@ -13,7 +17,7 @@ public:
     Board();
     //! @brief Copy constructor of the Board.
     //! @param b - Board to copy.
-    explicit Board(const Board& b);
+    Board(const Board& b);
 
     //! @brief Returns the status of the given field.
     //! @details Field empty is represented by 0. Number 1 or 2 specifies the player that checked this file
@@ -34,6 +38,11 @@ public:
     //! @param index - index of the field to check.
     char GetFieldChar(uint8 index) const;
 
+    //! @brief Returns fields that are open to check.
+    //! @pre Parameter openFields must be empty.
+    //! @param openFields - vector where the open fields will be stored. Stored values are guaranteed to be sorted.
+    void GetOpenFields(ActionList& OUTARG openFields) const;
+
     //! @brief Returns a winner of a match.
     //! @returns id of the player that won the game. 0 if there is no winner.
     uint8 GetWinner() const;
@@ -52,6 +61,11 @@ public:
     //! @param index - index of the field to check.
     //! @param player - player that makes a tick.
     void CheckField(uint8 index, uint8 player);
+    //! @brief Unclaims the field specified.
+    //! @pre index is valid and owned.
+    //! @post Field is no longer owned. Use only for AI.
+    //! @param index - index of the field to uncheck.
+    void UncheckField(uint8 index);
 
     //! @brief Finishes the match and cleans the board.
     //! @post Board is cleaned.
