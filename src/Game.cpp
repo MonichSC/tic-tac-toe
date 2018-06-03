@@ -7,6 +7,7 @@
 
 void Game::Launch(Player *p1, Player *p2)
 {
+    printf("For human players it is recommended to play on a num pad - fields on the game board are matching those on a numpad.");
     char input;
     do
     {
